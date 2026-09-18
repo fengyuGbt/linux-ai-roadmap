@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linux × AI — 12-Week Learning Roadmap</title>
+<style>
+  :root{
+    --green:#16a34a; --blue:#0ea5e9; --amber:#f59e0b; --slate:#64748b;
+    --line:#cbd5e1; --bg:#f8fafc; --card:#ffffff; --ink:#0f172a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif; background:var(--bg); color:var(--ink); padding:24px 16px 48px; line-height:1.55;}
+  .wrap{max-width:980px; margin:0 auto;}
+  header{background:linear-gradient(120deg,#0f172a,#1e3a2f); color:#fff; border-radius:14px; padding:28px 30px; margin-bottom:28px;}
+  header h1{font-size:26px; letter-spacing:.5px;}
+  header p{margin-top:8px; color:#cbd5e1; font-size:15px; max-width:760px;}
+  .legend{display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:18px; font-size:14px; color:#e2e8f0;}
+  .legend span{display:inline-flex; align-items:center; gap:7px;}
+  .dot{width:12px; height:12px; border-radius:50%; display:inline-block;}
+  .timeline{position:relative; margin:10px 0 0 8px; padding-left:34px;}
+  .timeline::before{content:""; position:absolute; left:10px; top:6px; bottom:6px; width:3px; background:var(--line); border-radius:2px;}
+  .item{position:relative; margin-bottom:18px;}
+  .item::before{content:""; position:absolute; left:-34px; top:18px; width:15px; height:15px; border-radius:50%; border:3px solid #fff; box-shadow:0 0 0 2px var(--c); background:var(--c);}
+  .card{background:var(--card); border:1px solid #e2e8f0; border-left:5px solid var(--c); border-radius:10px; padding:18px 20px; box-shadow:0 1px 3px rgba(15,23,42,.06);}
+  .phase{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 12px;}
+  .badge{font-size:13px; font-weight:600; color:#fff; background:var(--c); border-radius:20px; padding:2px 12px; letter-spacing:.3px;}
+  .weeks{font-size:14px; color:var(--slate); font-weight:600;}
+  h2{font-size:19px; margin:6px 0 2px;}
+  .goal{font-size:14px; color:var(--slate); margin-bottom:10px;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; font-size:14px;}
+  .cell{background:#f1f5f9; border-radius:8px; padding:10px 12px;}
+  .cell b{display:block; font-size:12.5px; text-transform:uppercase; letter-spacing:.4px; color:var(--slate); margin-bottom:4px;}
+  .cell .ai{color:#0369a1;}
+  .cell .proj{color:#166534;}
+  footer{margin-top:8px; color:var(--slate); font-size:13.5px; line-height:1.7;}
+  footer code{background:#e2e8f0; border-radius:4px; padding:1px 6px; font-size:12.5px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Linux × AI — 12-Week Learning Roadmap</h1>
+    <p>An AI-first path from zero to running, serving, and deploying local LLM &amp; data workflows on Ubuntu 24.04 LTS. Every phase ties a Linux concept to a real AI/data workflow, and every project is something you can publish.</p>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--green)"></i>Phase 1–2: Linux core</span>
+      <span><i class="dot" style="background:var(--blue)"></i>Phase 3: Python data env</span>
+      <span><i class="dot" style="background:var(--amber)"></i>Phase 4: Local AI/LLM stack</span>
+      <span><i class="dot" style="background:#7c3aed"></i>Phase 5: Deploy &amp; ops</span>
+      <span><i class="dot" style="background:var(--slate)"></i>Ongoing habits</span>
+    </div>
+  </header>
+
+  <div class="timeline">
+
+    <div class="item" style="--c:#334155">
+      <div class="card">
+        <div class="phase"><span class="badge">Phase 0</span><span class="weeks">Day 0</span></div>
+        <h2>Environment setup</h2>
+        <p class="goal">Goal: a working Ubuntu 24.04 shell (WSL2 / VM / VPS) + Git configured.</p>
+        <div class="grid">
+          <div class="cell"><b>Actions</b>apt update &amp; upgrade ・ Git identity ・ SSH key ・ htop / tmux</div>
+          <div class="cell"><b>First commands</b>pwd ・ ls -lh ・ cd — and read their man pages</div>
+          <div class="cell proj"><b>Project</b>✓ Terminal works, env checklist passes</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item" style="--c:var(--green)">
+      <div class="card">
+        <div class="phase"><span class="badge">Phase 1</span><span class="weeks">Weeks 1–2</span></div>
+        <h2>Linux fundamentals</h2>
+        <p class="goal">Goal: own files, paths, permissions, users and package management — the daily toolbox of an AI engineer.</p>
+        <div class="grid">
+          <div class="cell"><b>Week 1</b>Filesystem layout ・ find / du / df ・ less / grep / vim basics</div>
+          <div class="cell"><b>Week 2</b>chmod / chown ・ sudo &amp; users ・ apt ・ man / tldr</div>
+          <div class="cell ai"><b>AI tie-in</b>Dataset file &amp; permission hygiene; where models, data and logs live</div>
+          <div class="cell proj"><b>Project</b>~/lab workspace + a real dataset inspected by hand</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item" style="--c:var(--green)">
+      <div class="card">
+        <div class="phase"><span class="badge">Phase 2</span><span class="weeks">Weeks 3–4</span></div>
+        <h2>Shell &amp; automation</h2>
+        <p class="goal">Goal: pipelines, scripts, services, scheduled jobs, SSH and Git from the terminal.</p>
+        <div class="grid">
+          <div class="cell"><b>Week 3</b>Pipes &amp; redirection ・ sed / awk / sort / xargs ・ bash scripting ・ nohup / htop</div>
+          <div class="cell"><b>Week 4</b>systemd units ・ cron / timers ・ ssh-keygen / rsync ・ git push / pull</div>
+          <div class="cell ai"><b>AI tie-in</b>Automating data pipelines; keeping long-running jobs alive</div>
+          <div class="cell proj"><b>Project</b>process_dataset.sh + scheduled backup via systemd timer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item" style="--c:var(--blue)">
+      <div class="card">
+        <div class="phase"><span class="badge">Phase 3</span><span class="weeks">Weeks 5–6</span></div>
+        <h2>Python data environment on Linux</h2>
+        <p class="goal">Goal: clean, reproducible Python + data stack — the "works on my laptop" failure mode ends here.</p>
+        <div class="grid">
+          <div class="cell"><b>Week 5</b>venv / uv ・ PATH &amp; env vars ・ Jupyter headless ・ pathlib</div>
+          <div class="cell"><b>Week 6</b>parquet vs csv ・ git-lfs ・ Docker basics (run / ps / volumes)</div>
+          <div class="cell ai"><b>AI tie-in</b>First contact with containers — the standard delivery format for AI apps</div>
+          <div class="cell proj"><b>Project</b>Data-analysis script + tiny Dockerfile run in a container</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item" style="--c:var(--amber)">
+      <div class="card">
+        <div class="phase"><span class="badge">Phase 4</span><span class="weeks">Weeks 7–9</span></div>
+        <h2>Local AI / LLM stack</h2>
+        <p class="goal">Goal: run and serve real models — GPU acceleration (or a sensible CPU path), local LLMs, and a working RAG system.</p>
+        <div class="grid">
+          <div class="cell"><b>Week 7</b>nvidia-smi / nvtop ・ CUDA toolkit ・ torch.cuda check (CPU fallback documented)</div>
+          <div class="cell"><b>Week 8</b>Ollama pull / run ・ quantization (q4 / q8, GGUF) ・ REST API via curl</div>
+          <div class="cell"><b>Week 9</b>Hugging Face ・ embeddings ・ FAISS / Chroma ・ RAG: retrieve → augment → generate</div>
+          <div class="cell ai"><b>AI tie-in</b>This is the phase where Linux becomes your AI workstation</div>
+          <div class="cell proj"><b>Capstone project</b>rag-demo: answer questions from your own documents with sources</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item" style="--c:#7c3aed">
+      <div class="card">
+        <div class="phase"><span class="badge">Phase 5</span><span class="weeks">Weeks 10–12</span></div>
+        <h2>Deployment &amp; operations</h2>
+        <p class="goal">Goal: ship an AI service that stays up — from "can run models" to "can run a model-backed product".</p>
+        <div class="grid">
+          <div class="cell"><b>Week 10</b>FastAPI + uvicorn ・ systemd service ・ journalctl</div>
+          <div class="cell"><b>Week 11</b>Cloud Ubuntu server ・ SSH hardening + fail2ban ・ ufw ・ Nginx reverse proxy</div>
+          <div class="cell"><b>Week 12</b>htop / glances ・ rsync backups ・ GitHub Actions CI ・ auto-deploy</div>
+          <div class="cell proj"><b>Finale</b>RAG service live on a public URL + monitoring + CI</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item" style="--c:var(--slate)">
+      <div class="card">
+        <div class="phase"><span class="badge">Ongoing</span><span class="weeks">After week 12</span></div>
+        <h2>Habits track</h2>
+        <div class="grid">
+          <div class="cell"><b>Daily</b>Keep a Linux terminal workflow (even Git + Jupyter)</div>
+          <div class="cell"><b>Weekly</b>Journal in English ・ read one man page / official doc ・ try a new command</div>
+          <div class="cell"><b>Monthly</b>Publish: English → dev.to ・ 中文 → 知乎, from journal entries</div>
+          <div class="cell"><b>Quarterly</b>Pick a deeper track: kernel ・ networking ・ k8s ・ MLOps</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Read the full plan in <code>ROADMAP.md</code> (English) / <code>ROADMAP.zh-CN.md</code> (中文).<br>
+    Each phase ends with an English-reading task and a self-assessment checklist — hands-on projects are the real curriculum.
+  </footer>
+
+</div>
+</body>
+</html>
