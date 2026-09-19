@@ -118,7 +118,7 @@ Before pushing anything to a **public** repo, check for these — real incidents
 | Never commit | Why | Instead |
 |---|---|---|
 | Real IPs (WSL gateway, Tailscale, cloud server) | Reveals your infrastructure; the value changes anyway | `<your-gateway-ip>` |
-| Proxy address / port (`host:7890`) | Personal infrastructure others shouldn't reuse | `<your-proxy-host>:<port>` |
+| Proxy address / port (`host:<port>`) | Personal infrastructure others shouldn't reuse | `<your-proxy-host>:<port>` |
 | Tokens, API keys, private keys, `.env` files | Direct credential theft | Keep them in a secret manager; never the repo |
 | Real email address in docs | Spam + doxxing | `you@example.com` |
 
