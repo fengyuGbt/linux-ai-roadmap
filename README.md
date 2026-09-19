@@ -17,6 +17,7 @@ Most Linux tutorials teach commands in a vacuum. This roadmap is different:
 | **AI-first** | Every concept (files, permissions, processes, containers) is taught through an AI/ML or data-analysis workflow |
 | **English-first** | Official docs, `man` pages, and journals are in English — double duty as technical-English training |
 | **Learn in public** | Weekly journal entries are designed to be shared and to feed blog posts (dev.to / Zhihu) |
+| **Problem-first** | Every mistake is archived as a reusable lesson — the pitfall archive is often more useful than the tutorial |
 
 The plan is 12 weeks, 5 phases, plus an ongoing "habits" track. It assumes no prior Linux experience and works on a laptop, a WSL2 environment, or a cloud server.
 
@@ -32,7 +33,8 @@ The plan is 12 weeks, 5 phases, plus an ongoing "habits" track. It assumes no pr
 | [`docs/environment-setup.md`](docs/environment-setup.md) | WSL2 / VM / dual-boot / cloud-VPS setup guides |
 | [`docs/resources.md`](docs/resources.md) | Curated books, docs, interactive labs & communities |
 | [`docs/roadmap-visualization.html`](docs/roadmap-visualization.html) | Visual timeline of the whole plan (open in any browser) |
-| [`journal/`](journal/) | Weekly learning journal template & entries |
+| [`journal/`](journal/) | Weekly learning journal template & entries (the timeline) |
+| [`pitfalls/`](pitfalls/) | Problem → solution cards: real mistakes, root causes & reusable takeaways (the knowledge base) |
 
 ---
 
@@ -56,7 +58,8 @@ The plan is 12 weeks, 5 phases, plus an ongoing "habits" track. It assumes no pr
 2. **Set up your environment** with [`docs/environment-setup.md`](docs/environment-setup.md).
 3. **Do the hands-on projects** — they are the real curriculum, not the reading lists.
 4. **Journal weekly** using [`journal/template.md`](journal/template.md). Writing in English is encouraged; mistakes are welcome.
-5. **Share and contribute**: fork it, open issues, submit PRs, or just star the repo.
+5. **When something breaks and you fix it**, promote it into a [`pitfalls/`](pitfalls/) card — that's how this repo compounds.
+6. **Share and contribute**: fork it, open issues, submit PRs, or just star the repo.
 
 ---
 
@@ -66,6 +69,7 @@ The plan is 12 weeks, 5 phases, plus an ongoing "habits" track. It assumes no pr
 - **Boring is beautiful** — stick to the LTS distro and the default tooling until you have a reason to leave it.
 - **Read once, do twice** — for every hour of reading, spend two hours at the terminal.
 - **Teaching is learning** — every phase ends with a short piece you can turn into a blog post.
+- **Errors are curriculum** — capture them, diagnose them, generalize them. See [`pitfalls/`](pitfalls/).
 
 ---
 
