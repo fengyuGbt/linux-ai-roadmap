@@ -111,4 +111,19 @@ htop                    # launches = OK
 
 ---
 
+## Public-repo hygiene (if you publish your journey)
+
+Before pushing anything to a **public** repo, check for these — real incidents happen when people paste machine-specific configs into journals and docs:
+
+| Never commit | Why | Instead |
+|---|---|---|
+| Real IPs (WSL gateway, Tailscale, cloud server) | Reveals your infrastructure; the value changes anyway | `<your-gateway-ip>` |
+| Proxy address / port (`host:7890`) | Personal infrastructure others shouldn't reuse | `<your-proxy-host>:<port>` |
+| Tokens, API keys, private keys, `.env` files | Direct credential theft | Keep them in a secret manager; never the repo |
+| Real email address in docs | Spam + doxxing | `you@example.com` |
+
+Golden rule: **if a value is specific to your machine, it does not belong in a shared doc.** Use a placeholder plus a hint for how the reader finds their own value — e.g. the WSL gateway IP is discoverable with `ip route show default`, and the port is whatever your local proxy listens on.
+
+---
+
 > Environment ready? Start **Phase 1** of the [ROADMAP](../ROADMAP.md).
