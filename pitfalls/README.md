@@ -42,6 +42,7 @@ When something in your journal breaks and you figure out why — **promote it** 
 |---|---|---|---|
 | 001 | [`head 10` → `cannot open '10'`](001-argument-without-dash.md) | Command args need `-`; a bare word is a filename | 1 / W1 |
 | 002 | [`cut -d,` splits quoted CSV fields wrong](002-csv-quotes-cut.md) | CSV quotes escape commas; text tools don't parse syntax | 1 / W1 |
+| 003 | [`tldr` zip parse failure](003-tldr-zip-parse.md) | Default upstream returned HTML, not a ZIP | 1 / W2 |
 
 ---
 
