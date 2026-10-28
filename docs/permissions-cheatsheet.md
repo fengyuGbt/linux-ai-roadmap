@@ -95,6 +95,29 @@ The socket permission **is** the authentication: only root (owner) and docker me
 
 `sudo <cmd>` works the same way: a root child process runs the command for you. **Elevation** (your uid changes) and **delegation** (a root process acts on your request) are different mechanisms — Linux group-based tools mostly use delegation.
 
+### Mounting the host — containers can read AND write your files
+
+`-v <host-path>:<container-path>` borrows a host directory into the container. Direction is fixed: **host → container**.
+
+Inside the container, two different views of "root":
+
+| Command | Sees | What it is |
+|---|---|---|
+| `cat /etc/shadow` | container's own shadow (from the image) | harmless |
+| `cat /host/etc/shadow` | **the host's real file** (via the mount) | root-power proof |
+
+With the default `rw` mount, editing `/host/xxx` **edits the host's `xxx`** — kernel permission checks only look at the process uid (0), there is no "inside/outside container" distinction at the filesystem level. That's why `docker group + container` can modify host files (`/etc/shadow`, `/root/.ssh/authorized_keys`, anything), not just read them. Use `:ro` for read-only:
+
+```bash
+docker run --rm -v /:/host:ro alpine touch /host/aaaa-test
+# touch: /host/aaaa-test: Read-only file system   ← :ro works
+```
+
+Red lines:
+- Never rw-mount system directories (`/`, `/etc`, `/root`); mount specific data dirs or add `:ro`.
+- Keep the direction straight: changing `/host/xxx` = changing host `xxx`.
+- The positive everyday use: data volumes (`-v /home/erp/data:/var/lib/postgresql/data`) let you rebuild containers while data survives on the host.
+
 ## 4. Docker troubleshooting — WSL vs Windows (two pairs of glasses)
 
 Same machine, two views. If `docker` misbehaves in WSL, check the chain in order:
