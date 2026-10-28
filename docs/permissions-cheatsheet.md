@@ -77,6 +77,24 @@ Red lines:
 - Never expose the Docker API (port 2375) unauthenticated.
 - Add users to the `docker` group as carefully as to `sudo`.
 
+### How the power actually transfers — delegation, not elevation
+
+You never "become" root — your uid stays 1000 throughout. The mechanism is **delegation**: a root process acts on your request.
+
+```
+erp: docker run -v /:/host -it ubuntu bash
+   → ① docker CLI writes the request (JSON) into the socket
+        (erp may — group permission bit rw- on group docker)
+   → ② dockerd (uid=0) reads the request
+   → ③ dockerd executes it AS ITSELF, with root privileges
+        (creates the container, mounts /host = the whole host)
+   → effect: a uid=1000 user got a root-level job done
+```
+
+The socket permission **is** the authentication: only root (owner) and docker members (group) can touch it, so dockerd trusts whoever reaches it — no extra password. Adding someone to the docker group hands them a *remote control for a root process*, not a root identity.
+
+`sudo <cmd>` works the same way: a root child process runs the command for you. **Elevation** (your uid changes) and **delegation** (a root process acts on your request) are different mechanisms — Linux group-based tools mostly use delegation.
+
 ## 4. Docker troubleshooting — WSL vs Windows (two pairs of glasses)
 
 Same machine, two views. If `docker` misbehaves in WSL, check the chain in order:
